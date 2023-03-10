@@ -97,7 +97,7 @@ public class UserController {
     public ResponseEntity<List<Bike>> fallBackGetBikes(@PathVariable("userId") int userId, RuntimeException e) {
         return new ResponseEntity("El usuario "+userId+" tiene las motos en el taller", HttpStatus.OK);
     }
-    public ResponseEntity<Bike> fallBackSaveBike(@PathVariable("userId") int userId, @RequestBody Bike bike, RuntimeException e) {
+    public ResponseEntity<Bike> fallBackSaveBikes(@PathVariable("userId") int userId, @RequestBody Bike bike, RuntimeException e) {
         return new ResponseEntity("El usuario "+userId+" no tiene dinero para motos", HttpStatus.OK);
     }
 
