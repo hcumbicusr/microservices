@@ -1,5 +1,6 @@
 package com.procemetrix.gatewayservice.config;
 
+import com.procemetrix.gatewayservice.dto.RequestDto;
 import com.procemetrix.gatewayservice.dto.TokenDto;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
@@ -33,6 +34,7 @@ public class AuthFilter extends AbstractGatewayFilterFactory<AuthFilter.Config> 
             return webClient.build()
                     .post()
                     .uri("http://auth-service/auth/validate?token=" + chunks[1] )
+                    .bodyValue(new RequestDto(exchange.getRequest().getPath().toString(), exchange.getRequest().getMethod().toString()))
                     .retrieve().bodyToMono(TokenDto.class)
                     .map(t -> {
                         t.getToken();
