@@ -5,3 +5,11 @@ spring:
     config:
       enabled: true
       uri: http://localhost:8081
+    vault:
+      application:
+        name: user-service
+      scheme: http
+      authentication: TOKEN
+      host: localhost
+      token:
+      port: '8200'
